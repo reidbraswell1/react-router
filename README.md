@@ -1,70 +1,194 @@
-# Getting Started with Create React App
+# Exercise: React Router
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Part 1
+This section covers setting up React Router with two pages, Home and Films.
 
-## Available Scripts
+### Exercise 1: Restructure Project Files
 
-In the project directory, you can run:
 
-### `npm start`
+To clear space for React Router to be in App.jsx, move your existing code from there to a specific page component.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Create a new folder in src/ called pages/
+1. Within pages/, create a new file called home.page.jsx
+1. Copy the contents from App.jsx into home.page.jsx
+1. Change the component name from App to HomePage
+1. Remove the FilmsList component from the HomePage return statement (it will be it's own page component later 😉)
+1. Your HomePage component should resemble:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+import React, { useState } from "react";
 
-### `npm test`
+export function HomePage() {
+  const [text, setText] = useState("");
+  const [list, setList] = useState(["ready", "set", "GO"]);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  function onSubmit(event) {
+    event.preventDefault();
 
-### `npm run build`
+    let newList = [...list, text];
+    setList(newList);
+    setText("");
+  }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  return (
+    <div>
+      <h1>Learning React</h1>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="listitem"
+          id="listitem"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button type="submit">Add</button>
+      </form>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+      <ul>
+        {list.map((item, idx) => {
+          return <li key={idx}>{item}</li>;
+        })}
+      </ul>
+    </div>
+  );
+}
+```
+Exercise 2: Create a Films Page#
+Convert FilmsList to a page component.
 
-### `npm run eject`
+Create a new file in pages/ called films.page.jsx
+Copy the contents of components/FilmsList.jsx into films.page.jsx
+Rename FilmsList to FilmsPage
+Add to the return statement
+wrap the ul in a div
+add an h1 element that says "Studio Ghibli Films"
+Your FilmsPage should resemble:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+import React, { useState, useEffect } from "react";
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export function HomePage() {
+  const [list, setList] = useState([]);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  function getFilms() {
+    fetch("https://ghibliapi.herokuapp.com/films")
+      .then((res) => res.json())
+      .then((films) => setList(films))
+      .catch((err) => console.error(err));
+  }
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  useEffect(() => {
+    getFilms();
+  }, []);
 
-## Learn More
+  return (
+    <div>
+      <h1>Studio Ghibli Films</h1>
+      <ul>
+        {list.map((film) => {
+          return <li key={film.id}>{film.title}</li>;
+        })}
+      </ul>
+    </div>
+  );
+}
+Exercise 3: Export Pages#
+As a pattern, you may see index.js files used as single entry points for module exports. Although not required, that is what you will follow moving forward.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create an index.js file in pages/
+Import HomePage and FilmsPage
+Export an object that contains both HomePage and FilmsPage by default
+Your index.js file should resemble:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+import { HomePage } from "./home.page";
+import { FilmsPage } from "./films.page";
 
-### Code Splitting
+export { HomePage, FilmsPage };
+Exercise 4: Setup React Router#
+Setup React Router in App.jsx.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Use npm to install react-router-dom (from your terminal)
+In App.jsx, import BrowserRouter, NavLink, Routes and Route from react-router-dom
+Import HomePage and FilmsPage from the index.js file in pages/
+Clear the current contents of App
+Add a return statement that:
+returns BrowserRouter
+with Routes rendered as a child of BrowserRouter
+with two Route components
+HomePage should be rendered for "/"
+FilmsPage should be rendered for "films"
+Add a nav inside the BrowserRouter above the Routes
+with a ul of two li
+each li should contain a NavLink
+match one NavLink's to prop to "/", and give it text that displays "Home"
+match the other NavLink's to prop to "films", and give it text that displays "Films"
+Part 2#
+This section covers adding filter functionality to the Films list by director.
 
-### Analyzing the Bundle Size
+Exercise 1: Setup Filter Elements#
+Open films.page.jsx.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Declare another piece of state, searchDirector and setSearchDirector, that will be destructured from the return of useState("")
+Add a form to the return statement beneath the existing h1
+Add a div with class name form-group inside of the form
+Add a label and select inside of the div.form-group
+set the select's value prop to the searchDirector state
+set the select's onChange prop to a function that calls setSearchDirector and updates searchDirector with the chose option value
+add a single option to the select (for now) with the value set to "" and text content displaying "All"
+Exercise 2: Helper Functions for Film Directors#
+Create some helper functions that can be used with the Studio Ghibli film data.
 
-### Making a Progressive Web App
+Create a new folder in src/ called helpers/
+Create a file in helpers/ called film.helpers.js
+In film.helpers.js, create and export a function called filterFilmsByDirector
+In film.helpers.js, create and export a function called getListOf
+Exercise 3: filterFilmsByDirector#
+The goal of filterFilmsByDirector, as per the name, is to receive list (array) and director (string) parameters, and return a filtered list of films where only the films by a the specified director are included.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+For example:
 
-### Advanced Configuration
+Input:
+list - [
+        { title: "Castle in the Sky", director: "Hayao Miyazaki" },
+        { title: "Grave of the Fireflies", director: "Isao Takahata" },
+        { title: "My Neighbor Totoro", director: "Hayao Miyazaki" }
+      ]
+director - "Hayao Miyazaki"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Output:
+[
+  { title: "Castle in the Sky", director: "Hayao Miyazaki" },
+  { title: "My Neighbor Totoro", director: "Hayao Miyazaki" }
+]
+Implement filterFilmsByDirector
+Once done, import filterFilmsByDirector in films.page.jsx
+Call filterFilmsByDirector before your return statement
+pass in list (state) and searchDirector (state) as parameters
+assign the result to a variable called filmsByDirector
+In your return statement, change list.map(...) to filmsByDirector.map(...)
+Exercise 4: getListOf#
+The goal of getListOf is to receive list (array) and prop (string) parameters, and return a cumulative list of items including every unique value that exists in the list at the specified property.
 
-### Deployment
+For example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Input:
+list - [
+        { firstName: "Frodo", lastName: "Baggins" },
+        { firstName: "Bilbo", lastName: "Baggins" },
+        { firstName: "Sam" lastName: "Gamgee" }
+      ]
+prop - "lastName"
 
-### `npm run build` fails to minify
+Output:
+["Baggins", "Gamgee"]
+Implement getListOf
+Once done, import getListOf in films.page.jsx
+Call getListOf before your return statement
+pass in list (state) and "director" as parameters
+assign the result to a variable called directors
+In your return statement, within your select and below the <option value="">All</option>
+use the map array method to return a new array of option elements, one per item in directors
+the value prop and text content should both be set to the director
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
