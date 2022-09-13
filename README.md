@@ -4,8 +4,6 @@
 This section covers setting up React Router with two pages, Home and Films.
 
 ### Exercise 1: Restructure Project Files
-
-
 To clear space for React Router to be in App.jsx, move your existing code from there to a specific page component.
 
 1. Create a new folder in src/ called pages/
@@ -54,17 +52,19 @@ export function HomePage() {
   );
 }
 ```
-Exercise 2: Create a Films Page#
+### Exercise 2: Create a Films Page
 Convert FilmsList to a page component.
 
-Create a new file in pages/ called films.page.jsx
-Copy the contents of components/FilmsList.jsx into films.page.jsx
-Rename FilmsList to FilmsPage
-Add to the return statement
-wrap the ul in a div
-add an h1 element that says "Studio Ghibli Films"
+1. Create a new file in pages/ called films.page.jsx
+1. Copy the contents of components/FilmsList.jsx into films.page.jsx
+1. Rename FilmsList to FilmsPage
+1. Add to the return statement
+    * wrap the `ul` in a `div`
+    * add an `h1` element that says "Studio Ghibli Films"
+
 Your FilmsPage should resemble:
 
+```
 import React, { useState, useEffect } from "react";
 
 export function HomePage() {
@@ -92,18 +92,24 @@ export function HomePage() {
     </div>
   );
 }
-Exercise 3: Export Pages#
-As a pattern, you may see index.js files used as single entry points for module exports. Although not required, that is what you will follow moving forward.
+```
 
-Create an index.js file in pages/
-Import HomePage and FilmsPage
-Export an object that contains both HomePage and FilmsPage by default
-Your index.js file should resemble:
+### Exercise 3: Export Pages
 
+As a pattern, you may see `index.js` files used as single entry points for module exports. Although not required, that is what you will follow moving forward.
+
+1. Create an index.js file in pages/
+1. Import HomePage and FilmsPage
+1. Export an object that contains both HomePage and FilmsPage by default
+1. Your index.js file should resemble:
+
+```
 import { HomePage } from "./home.page";
 import { FilmsPage } from "./films.page";
 
 export { HomePage, FilmsPage };
+```
+
 Exercise 4: Setup React Router#
 Setup React Router in App.jsx.
 
