@@ -110,49 +110,59 @@ import { FilmsPage } from "./films.page";
 export { HomePage, FilmsPage };
 ```
 
-Exercise 4: Setup React Router#
-Setup React Router in App.jsx.
+### Exercise 4: Setup React Router
 
-Use npm to install react-router-dom (from your terminal)
-In App.jsx, import BrowserRouter, NavLink, Routes and Route from react-router-dom
-Import HomePage and FilmsPage from the index.js file in pages/
-Clear the current contents of App
-Add a return statement that:
-returns BrowserRouter
-with Routes rendered as a child of BrowserRouter
-with two Route components
-HomePage should be rendered for "/"
-FilmsPage should be rendered for "films"
-Add a nav inside the BrowserRouter above the Routes
-with a ul of two li
-each li should contain a NavLink
-match one NavLink's to prop to "/", and give it text that displays "Home"
-match the other NavLink's to prop to "films", and give it text that displays "Films"
-Part 2#
+Setup React Router in `App.jsx`.
+
+1. Use npm to install `react-router-dom` (from your terminal)
+1. In `App.jsx`, import `BrowserRouter`, `NavLink`, `Routes` and `Route` from `react-router-dom`
+1. Import HomePage and FilmsPage from the index.js file in pages/
+1. Clear the current contents of App
+1. Add a return statement that:
+  * returns BrowserRouter
+  * with Routes rendered as a child of BrowserRouter
+  * with two Route components
+    * HomePage should be rendered for "/"
+    * FilmsPage should be rendered for "films"
+1. Add a nav inside the BrowserRouter above the Routes
+  * with a `ul` of two `li`
+  * each `li` should contain a `NavLink`
+  * match one `NavLink's` to prop to `"/"`, and give it text that displays "Home"
+  * match the other `NavLink's` to prop to `"films"`, and give it text that displays "Films"
+
+
+## Part 2
+
 This section covers adding filter functionality to the Films list by director.
 
-Exercise 1: Setup Filter Elements#
+### Exercise 1: Setup Filter Elements
 Open films.page.jsx.
 
-Declare another piece of state, searchDirector and setSearchDirector, that will be destructured from the return of useState("")
-Add a form to the return statement beneath the existing h1
-Add a div with class name form-group inside of the form
-Add a label and select inside of the div.form-group
-set the select's value prop to the searchDirector state
-set the select's onChange prop to a function that calls setSearchDirector and updates searchDirector with the chose option value
-add a single option to the select (for now) with the value set to "" and text content displaying "All"
-Exercise 2: Helper Functions for Film Directors#
+1. Declare another piece of state, searchDirector and setSearchDirector, that will be destructured from the return of useState("")
+1. Add a form to the return statement beneath the existing h1
+1. Add a div with class name form-group inside of the form
+1. Add a label and select inside of the div.form-group
+  * set the select's value prop to the searchDirector state
+  * set the select's onChange prop to a function that calls setSearchDirector and updates searchDirector with the chose option value
+  * add a single option to the select (for now) with the value set to "" and text content displaying "All"
+
+### Exercise 2: Helper Functions for Film Directors
+
 Create some helper functions that can be used with the Studio Ghibli film data.
 
-Create a new folder in src/ called helpers/
-Create a file in helpers/ called film.helpers.js
-In film.helpers.js, create and export a function called filterFilmsByDirector
-In film.helpers.js, create and export a function called getListOf
-Exercise 3: filterFilmsByDirector#
+1. Create a new folder in src/ called helpers/
+1. Create a file in helpers/ called film.helpers.js
+1. In film.helpers.js, create and export a function called filterFilmsByDirector
+1. In film.helpers.js, create and export a function called getListOf
+
+
+### Exercise 3: filterFilmsByDirector
+
 The goal of filterFilmsByDirector, as per the name, is to receive list (array) and director (string) parameters, and return a filtered list of films where only the films by a the specified director are included.
 
 For example:
 
+```
 Input:
 list - [
         { title: "Castle in the Sky", director: "Hayao Miyazaki" },
@@ -166,17 +176,22 @@ Output:
   { title: "Castle in the Sky", director: "Hayao Miyazaki" },
   { title: "My Neighbor Totoro", director: "Hayao Miyazaki" }
 ]
-Implement filterFilmsByDirector
-Once done, import filterFilmsByDirector in films.page.jsx
-Call filterFilmsByDirector before your return statement
-pass in list (state) and searchDirector (state) as parameters
-assign the result to a variable called filmsByDirector
-In your return statement, change list.map(...) to filmsByDirector.map(...)
-Exercise 4: getListOf#
-The goal of getListOf is to receive list (array) and prop (string) parameters, and return a cumulative list of items including every unique value that exists in the list at the specified property.
+```
+
+1. Implement filterFilmsByDirector
+1. Once done, import filterFilmsByDirector in films.page.jsx
+1. Call filterFilmsByDirector before your return statement
+  * pass in list (state) and searchDirector (state) as parameters
+  * assign the result to a variable called filmsByDirector
+1. In your return statement, change list.map(...) to filmsByDirector.map(...)
+
+### Exercise 4: `getListOf`
+
+The goal of `getListOf` is to receive `list` (array) and `prop` (string) parameters, and return a cumulative list of items including every unique value that exists in the list at the specified property.
 
 For example:
 
+```
 Input:
 list - [
         { firstName: "Frodo", lastName: "Baggins" },
@@ -187,14 +202,16 @@ prop - "lastName"
 
 Output:
 ["Baggins", "Gamgee"]
-Implement getListOf
-Once done, import getListOf in films.page.jsx
-Call getListOf before your return statement
-pass in list (state) and "director" as parameters
-assign the result to a variable called directors
-In your return statement, within your select and below the <option value="">All</option>
-use the map array method to return a new array of option elements, one per item in directors
-the value prop and text content should both be set to the director
+```
+
+1. Implement `getListOf`
+1. Once done, import `getListOf` in `films.page.jsx`
+1. Call `getListOf` before your return statement
+  * pass in `list` (state) and `"director"` as parameters
+  * assign the result to a variable called `directors`
+1. In your return statement, within your `select` and below the `<option value="">All</option>`
+  * use the `map` array method to return a new array of `option` elements, one per item in `directors`
+  * the `value` prop and text content should both be set to the director
 
 
 
