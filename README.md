@@ -156,9 +156,9 @@ Create some helper functions that can be used with the Studio Ghibli film data.
 1. In `film.helpers.js`, create and export a function called `getListOf`
 
 
-### Exercise 3: filterFilmsByDirector
+### Exercise 3: `filterFilmsByDirector`
 
-The goal of filterFilmsByDirector, as per the name, is to receive list (array) and director (string) parameters, and return a filtered list of films where only the films by a the specified director are included.
+The goal of `filterFilmsByDirector`, as per the name, is to receive `list` (array) and `director` (string) parameters, and return a filtered list of films where only the films by a the specified director are included.
 
 For example:
 
@@ -180,9 +180,9 @@ Output:
 
 1. Implement `filterFilmsByDirector`
 1. Once done, `import filterFilmsByDirector` in `films.page.jsx`
-1. Call filterFilmsByDirector before your return statement
-  * pass in list (state) and searchDirector (state) as parameters
-  * assign the result to a variable called filmsByDirector
+1. Call `filterFilmsByDirector` before your return statement
+  * pass in `list` (state) and `searchDirector` (state) as parameters
+  * assign the result to a variable called `filmsByDirector`
 1. In your return statement, change `list.map(...)` to `filmsByDirector.map(...)`
 
 ### Exercise 4: `getListOf`
