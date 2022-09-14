@@ -4,14 +4,14 @@
 This section covers setting up React Router with two pages, Home and Films.
 
 ### Exercise 1: Restructure Project Files
-To clear space for React Router to be in App.jsx, move your existing code from there to a specific page component.
+To clear space for React Router to be in `App.jsx`, move your existing code from there to a specific page component.
 
-1. Create a new folder in src/ called pages/
-1. Within pages/, create a new file called home.page.jsx
-1. Copy the contents from App.jsx into home.page.jsx
-1. Change the component name from App to HomePage
-1. Remove the FilmsList component from the HomePage return statement (it will be it's own page component later 😉)
-1. Your HomePage component should resemble:
+1. Create a new folder in `src/` called `pages/`
+1. Within `pages/`, create a new file called `home.page.jsx`
+1. Copy the contents from `App.jsx` into `home.page.jsx`
+1. Change the component name from `App` to `HomePage`
+1. Remove the `FilmsList` component from the `HomePage` return statement (it will be it's own page component later 😉)
+1. Your `HomePage` component should resemble:
 
 ```
 import React, { useState } from "react";
@@ -53,16 +53,16 @@ export function HomePage() {
 }
 ```
 ### Exercise 2: Create a Films Page
-Convert FilmsList to a page component.
+Convert `FilmsList` to a page component.
 
-1. Create a new file in pages/ called films.page.jsx
-1. Copy the contents of components/FilmsList.jsx into films.page.jsx
-1. Rename FilmsList to FilmsPage
+1. Create a new file in `pages/` called `films.page.jsx`
+1. Copy the contents of `components/FilmsList.jsx` into `films.page.jsx`
+1. Rename `FilmsList` to `FilmsPage`
 1. Add to the return statement
     * wrap the `ul` in a `div`
     * add an `h1` element that says "Studio Ghibli Films"
 
-Your FilmsPage should resemble:
+Your `FilmsPage` should resemble:
 
 ```
 import React, { useState, useEffect } from "react";
@@ -98,10 +98,10 @@ export function HomePage() {
 
 As a pattern, you may see `index.js` files used as single entry points for module exports. Although not required, that is what you will follow moving forward.
 
-1. Create an index.js file in pages/
-1. Import HomePage and FilmsPage
-1. Export an object that contains both HomePage and FilmsPage by default
-1. Your index.js file should resemble:
+1. Create an `index.js` file in `pages/`
+1. Import `HomePage` and `FilmsPage`
+1. Export an object that contains both `HomePage` and `FilmsPage` by default
+1. Your `index.js` file should resemble:
 
 ```
 import { HomePage } from "./home.page";
@@ -116,15 +116,15 @@ Setup React Router in `App.jsx`.
 
 1. Use npm to install `react-router-dom` (from your terminal)
 1. In `App.jsx`, import `BrowserRouter`, `NavLink`, `Routes` and `Route` from `react-router-dom`
-1. Import HomePage and FilmsPage from the index.js file in pages/
-1. Clear the current contents of App
+1. Import `HomePage` and `FilmsPage` from the `index.js` file in `pages/`
+1. Clear the current contents of `App`
 1. Add a return statement that:
-  * returns BrowserRouter
-  * with Routes rendered as a child of BrowserRouter
-  * with two Route components
-    * HomePage should be rendered for "/"
-    * FilmsPage should be rendered for "films"
-1. Add a nav inside the BrowserRouter above the Routes
+  * returns `BrowserRouter`
+  * with `Routes` rendered as a child of `BrowserRouter`
+  * with two `Route` components
+    * `HomePage` should be rendered for `"/"`
+    * `FilmsPage` should be rendered for `"films"`
+1. Add a `nav` inside the `BrowserRouter` above the `Routes`
   * with a `ul` of two `li`
   * each `li` should contain a `NavLink`
   * match one `NavLink's` to prop to `"/"`, and give it text that displays "Home"
@@ -136,7 +136,7 @@ Setup React Router in `App.jsx`.
 This section covers adding filter functionality to the Films list by director.
 
 ### Exercise 1: Setup Filter Elements
-Open films.page.jsx.
+Open `films.page.jsx`.
 
 1. Declare another piece of state, searchDirector and setSearchDirector, that will be destructured from the return of useState("")
 1. Add a form to the return statement beneath the existing h1
@@ -178,8 +178,8 @@ Output:
 ]
 ```
 
-1. Implement filterFilmsByDirector
-1. Once done, import filterFilmsByDirector in films.page.jsx
+1. Implement `filterFilmsByDirector`
+1. Once done, `import filterFilmsByDirector` in `films.page.jsx`
 1. Call filterFilmsByDirector before your return statement
   * pass in list (state) and searchDirector (state) as parameters
   * assign the result to a variable called filmsByDirector
