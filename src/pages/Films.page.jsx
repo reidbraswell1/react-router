@@ -52,6 +52,7 @@ function FilmsPage(props) {
     }
     return(
         <div>
+            <h1>Studio Ghibli Films</h1>
         <ul className="list-group">
             {list.map((value,index,array) => {
                 return(
