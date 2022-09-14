@@ -138,22 +138,22 @@ This section covers adding filter functionality to the Films list by director.
 ### Exercise 1: Setup Filter Elements
 Open `films.page.jsx`.
 
-1. Declare another piece of state, searchDirector and setSearchDirector, that will be destructured from the return of useState("")
-1. Add a form to the return statement beneath the existing h1
-1. Add a div with class name form-group inside of the form
-1. Add a label and select inside of the div.form-group
-  * set the select's value prop to the searchDirector state
-  * set the select's onChange prop to a function that calls setSearchDirector and updates searchDirector with the chose option value
-  * add a single option to the select (for now) with the value set to "" and text content displaying "All"
+1. Declare another piece of state, `searchDirector` and `setSearchDirector`, that will be destructured from the return of `useState("")`
+1. Add a `form` to the return statement beneath the existing `h1`
+1. Add a `div` with class name `form-group` inside of the `form`
+1. Add a `label` and `select` inside of the `div.form-group`
+  * set the `select's` `value` prop to the `searchDirector` state
+  * set the `select's` `onChange` prop to a function that calls `setSearchDirector` and updates `searchDirector` with the chose `option` value
+  * add a single `option` to the `select` (for now) with the value set to `""` and text content displaying `"All"`
 
 ### Exercise 2: Helper Functions for Film Directors
 
 Create some helper functions that can be used with the Studio Ghibli film data.
 
-1. Create a new folder in src/ called helpers/
-1. Create a file in helpers/ called film.helpers.js
-1. In film.helpers.js, create and export a function called filterFilmsByDirector
-1. In film.helpers.js, create and export a function called getListOf
+1. Create a new folder in `src/` called `helpers/`
+1. Create a file in `helpers/` called `film.helpers.js`
+1. In `film.helpers.js`, create and export a function called `filterFilmsByDirector`
+1. In `film.helpers.js`, create and export a function called `getListOf`
 
 
 ### Exercise 3: filterFilmsByDirector
