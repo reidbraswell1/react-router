@@ -183,7 +183,7 @@ Output:
 1. Call filterFilmsByDirector before your return statement
   * pass in list (state) and searchDirector (state) as parameters
   * assign the result to a variable called filmsByDirector
-1. In your return statement, change list.map(...) to filmsByDirector.map(...)
+1. In your return statement, change `list.map(...)` to `filmsByDirector.map(...)`
 
 ### Exercise 4: `getListOf`
 
