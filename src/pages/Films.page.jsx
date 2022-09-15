@@ -65,5 +65,4 @@ function FilmsPage(props) {
         </div>);
 
 }
-
-export default FilmsPage
+export { FilmsPage };
