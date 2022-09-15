@@ -1,4 +1,4 @@
-import { HomePage } from "./Home.page";
-import { FilmsPage } from "./Films.page";
+import { HomePage } from "./Home.page.jsx";
+import { FilmsPage } from "./Films.page.jsx";
 
-export { HomePage, FilmsPage }
+export { HomePage, FilmsPage };
