@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Footer from "./components/Footer.jsx";
+import Footer from "../components/Footer.jsx";
 
 function HomePage(props) {
 
@@ -10,25 +10,34 @@ function HomePage(props) {
     const [ text, setText ] = useState("");
     const [ errorTest, setErrorTest ] = React.useState(false);
 
+    function onSubmit(event) {
+        event.preventDefault();
+    
+        let newList = [...list, text];
+        setList(newList);
+        setText("");
+    }
+
     return(<div className="container">
             <div className="row">
-              <div class="col-7 text-center my-center mt-3">
+              <div className="col-4 text-center my-center mt-3">
                 <h1>React Routes</h1>
               </div>
             </div>
             <div className="row">
-                <div col-8>
+                <div className="col-4 my-center">
                     <form onSubmit={onSubmit}>
                         <div className="form-group">
                             <label for="listitem">List Item</label>
                             <input
+                                className="form-control"
                                 type="text"
                                 name="listitem"
                                 id="listitem"
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}/>
-                        </div>
                         <button type="submit">Add</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -39,5 +48,5 @@ function HomePage(props) {
             </div>
             <Footer></Footer>
           </div>)
-  }
-export default HomePage;
+}
+export { HomePage };
