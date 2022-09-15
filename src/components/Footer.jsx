@@ -7,7 +7,7 @@ function Footer(props) {
     return (
         <div className="row mt-3">
             <footer className="col-4 my-center footer">
-                <p>{footerText}</p>
+                <span>{footerText}</span>
             </footer>
         </div>);
 }
