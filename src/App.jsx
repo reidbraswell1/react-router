@@ -10,13 +10,13 @@ import { FilmsPage } from "./pages/index.js";
 function App(props) {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-sm navbar-light" style={{backgroundColor:"#e3f2fd"}}>
+      <nav className="navbar navbar-expand-sm navbar-light" style={{backgroundColor:"rgb(51, 62, 84)"}}>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/">Home</NavLink>
+            <NavLink className="nav-link color-white" style={{color:"white" }}to="/">Home</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="films">Films</NavLink>
+            <NavLink className="nav-link color-white" to="films">Films</NavLink>
           </li>
         </ul>
       </nav>
