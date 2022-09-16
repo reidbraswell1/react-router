@@ -83,7 +83,7 @@ function FilmsPage(props) {
             <div className="row">
                 <div className="col-5 my-center">
                     <h4 className="text-center color-white">Title - Director</h4>
-                    <ul className="list-group">
+                    <ul className="list-group border border-primary rounded">
                         {filmsByDirector.map((value,index,array) => {
                             return(
                                 <li className="list-group-item" 
