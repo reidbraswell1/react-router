@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { filterFilmsByDirector } from "../helpers/film.helpers.js";
 import { getListOf } from "../helpers/film.helpers.js";
+import Footer from "../components/Footer.jsx";
 
 function FilmsPage(props) {
     
@@ -92,6 +93,7 @@ function FilmsPage(props) {
                                 </li>)})}
                     </ul>
                     <p className="error"><span className="color-red">{errorText}</span></p>
+                    <Footer></Footer>
                 </div>
             </div>
         </div>);
