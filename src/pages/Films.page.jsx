@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { filterFilmsByDirector } from "../helpers/film.helpers.js";
+import { getListOf } from "../helpers/film.helpers.js";
 
 function FilmsPage(props) {
     
@@ -8,6 +10,7 @@ function FilmsPage(props) {
 
     const [ list, setList ] = useState([]);
     const [ errorText, setErrorText ] = useState("");
+    const [ searchDirector, setSearchDirector ] = useState("");
 
     useEffect(function () {
         console.log(`---Begin useEffect()---`);
@@ -50,9 +53,24 @@ function FilmsPage(props) {
             });
         console.log(`---End FilmsList getFilms()---`);
     }
+
+    const directors = getListOf(list, "director");
+    console.log(`Directors = ${directors}`);
+
     return(
         <div>
             <h1>Studio Ghibli Films</h1>
+            <form>
+                <div className="form-group">
+                    <label htmlFor="searchDirector">Director</label>
+                    <select id="searchDirector" value={searchDirector} onChange={(e) => { setSearchDirector(e.target.value)} }>
+                        <option value="">All</option>
+                        { directors.map((value) => {
+                            return(<option value={value}>{value}</option>);
+                        }) }
+                    </select>
+                </div>
+            </form>
         <ul className="list-group">
             {list.map((value,index,array) => {
                 return(
