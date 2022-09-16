@@ -8,8 +8,7 @@ body {
 
 .footer {
   font-size: .8rem;
-  color: green;
-  background-color:#e3f2fd
+  color: white;
 }
 
 .error {
@@ -22,6 +21,10 @@ body {
 
 .color-white {
   color: white;
+}
+
+.background-color-white {
+  background-color: white;
 }
 
 nav {
