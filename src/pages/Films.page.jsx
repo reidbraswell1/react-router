@@ -54,6 +54,7 @@ function FilmsPage(props) {
         console.log(`---End FilmsList getFilms()---`);
     }
 
+    const filmsByDirector = filterFilmsByDirector(list, searchDirector);
     const directors = getListOf(list, "director");
     console.log(`Directors = ${directors}`);
 
@@ -64,7 +65,7 @@ function FilmsPage(props) {
                 <div className="form-group">
                     <label htmlFor="searchDirector">Director</label>
                     <select id="searchDirector" value={searchDirector} onChange={(e) => { setSearchDirector(e.target.value)} }>
-                        <option value="">All</option>
+                        <option value="All">All</option>
                         { directors.map((value) => {
                             return(<option value={value}>{value}</option>);
                         }) }
@@ -72,7 +73,7 @@ function FilmsPage(props) {
                 </div>
             </form>
         <ul className="list-group">
-            {list.map((value,index,array) => {
+            {filmsByDirector.map((value,index,array) => {
                 return(
                         <li className="list-group-item" 
                             key={value.id} 
