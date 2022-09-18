@@ -1,6 +1,10 @@
 import { React } from "react"
 
-function filterFilmsByDirector(searchList, searchDirector) {
+function filterFilmsByDirector(searchList,searchDirector) {
+
+    console.log(`---Begin filterFilmsByDirector()---`);
+    console.log(`SearchList=`,searchList);
+    console.log(`Search Director=`,searchDirector)
     
     let filteredList = [];
     
@@ -12,6 +16,10 @@ function filterFilmsByDirector(searchList, searchDirector) {
             filteredList.push(filteredElement);
         }
     });
+
+    console.log(`Filtered Films List=`,filteredList);
+    console.log(`---End function filterFilmsByDirector()---`);
+    
     return filteredList;
 }
 
@@ -19,6 +27,8 @@ function filterFilmsByDirector(searchList, searchDirector) {
 function getListOf(searchList, property) {
 
     console.log(`---Begin Function getListOf()---`);
+    console.log(`Search List=`,searchList);
+    console.log(`Property=`,property);
 
     let resultArray = [];
 
@@ -28,8 +38,9 @@ function getListOf(searchList, property) {
         }
     })
 
+    console.log(`List of Directors=`,resultArray);
     console.log(`---End Function getListOf()---`);
+    
     return resultArray;
 }
-
 export { filterFilmsByDirector, getListOf };
