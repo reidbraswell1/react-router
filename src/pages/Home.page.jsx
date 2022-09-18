@@ -1,59 +1,64 @@
-import React from "react";
+import { React } from "react";
 import { useState } from "react";
 import Footer from "../components/Footer.jsx";
 
+// Home Page Main Function
 function HomePage(props) {
 
-    console.log(`---Begin Function App()---`);
+    console.log(`---Begin Function HomePage()---`);
 
     const [ list, setList ] = useState(["ready", "set", "GO"]);
     const [ text, setText ] = useState("");
-    const [ errorTest, setErrorTest ] = React.useState(false);
 
     // Submit button event handler
     function onSubmit(event) {
+
       console.log(`---Begin onSubmit()---`);
+
       let buttonValue = event.target.value;
+
       event.preventDefault();
     
       switch (buttonValue) {
-      case "Add":
-        // Don't process empty string
-        if (!text || text.length === 0) {
-          console.log(`Empty String`);
-        }
-        else {
-          // Must use a new array
-          let newList = list.slice(0);
-          newList.push(text);
-          // Clear text so that it won't be displayed on subsequent add
-          setList(newList);
-          setText("");
-        }
-        break;
-      case "Delete":
-        if(!text || text.length === 0) {
-          console.log(`Empty String`);
-        }
-        else {
-          let newList = [];
-          let deleteIndex = parseInt(text);
-          for(let i=0; i < list.length; i++) {
-            if(deleteIndex !== (i + 1)) {
-              newList.push(list[i]);
-            }
+        case "Add":
+          // Don't process empty string
+          if (!text || text.length === 0) {
+            console.log(`Empty String`);
           }
-          // Clear text so that it won't be displayed on subsequent add
-          setList(newList);
-          setText("");
-        }
-        break; 
-      default: 
-        console.log(`Invalid Button value ${buttonValue}`);
+          else {
+            // Must use a new array
+            let newList = list.slice(0);
+            newList.push(text);
+            console.log(`NewList=`,newList);
+            // Clear text so that it won't be displayed on subsequent add
+            setList(newList);
+            setText("");
+          }
+          break;
+        case "Delete":
+          if(!text || text.length === 0) {
+            console.log(`Empty String`);
+          }
+          else {
+            let newList = [];
+            let deleteIndex = parseInt(text);
+            for(let i=0; i < list.length; i++) {
+              if(deleteIndex !== (i + 1)) {
+                newList.push(list[i]);
+              }
+            }
+            console.log(`NewList=`,newList);
+            // Clear text so that it won't be displayed on subsequent add
+            setList(newList);
+            setText("");
+          }
+          break; 
+        default: 
+          console.log(`Invalid Button value ${buttonValue}`);
         break;
+      }
+      console.log(`---End onSubmit()---`);
     }
-    console.log(`---End onSubmit()---`);
-  }
 
     return(<div className="container">
               <div className="row">
@@ -93,7 +98,7 @@ function HomePage(props) {
                     let listText = `(${idx+1}.) ${item}`;
                       return <li className="list-group-item"
                                  key={listId}
-                                 id={listId}>{item}
+                                 id={listId}>{listText}
                              </li>;
                     })}
                   </ul>
