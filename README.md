@@ -1,5 +1,8 @@
 # Exercise: React Router
 
+![React Router Home Page](/ReactRouterHomePage.png?raw=true "React Router Home Page")
+![React Router Films Page](/ReactRouterFilmsPage.png?raw=true "React Router Films Page")
+
 ## Part 1
 This section covers setting up React Router with two pages, Home and Films.
 
