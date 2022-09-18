@@ -11,7 +11,9 @@ function FilmsPage(props) {
 
     const [ list, setList ] = useState([]);
     const [ errorText, setErrorText ] = useState("");
+    const [ errorTest, setErrorTest ] = useState(false);
     const [ searchDirector, setSearchDirector ] = useState("All");
+    const [ directors, setDirectors ] = useState([]);
 
     useEffect(function () {
         console.log(`---Begin useEffect()---`);
@@ -27,7 +29,7 @@ function FilmsPage(props) {
         let URL = "";
 
         // Set URL to the good url or bad based on the errTest prop
-        if(props.errTest) {
+        if(errorTest) {
             URL = BAD_URL;
         }
         else {
@@ -43,8 +45,11 @@ function FilmsPage(props) {
                 }
             })
             .then((data) => {
-                console.log(data);
+                console.log(`Data=`,data);
                 setList(data);
+                const directors = getListOf(data, "director");
+                console.log(`Directors=`,directors)
+                setDirectors(directors);
                 setErrorText("");
             })
             .catch((err) => { 
@@ -54,10 +59,8 @@ function FilmsPage(props) {
             });
         console.log(`---End FilmsList getFilms()---`);
     }
-
+    
     const filmsByDirector = filterFilmsByDirector(list, searchDirector);
-    const directors = getListOf(list, "director");
-    console.log(`Directors = ${directors}`);
 
     return(
         <div className="container">
