@@ -16,12 +16,12 @@ function App(props) {
   return (
     <BrowserRouter>
       <nav className="navbar navbar-expand-sm navbar-light">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink exact className="nav-link color-white" activeClassName="active" to="/">Home</NavLink>
+        <ul id="nav-items" className="navbar-nav">
+          <li id="nav-item-home" className="nav-item">
+            <NavLink exact className={(isActive) => (isActive.isActive ? "nav-link color-white active" : "nav-link color-white not-active")} to="/">Home</NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link color-white"  to="/films">Films</NavLink>
+          <li id="nav-item-films" className="nav-item">
+            <NavLink className={(isActive) => (isActive.isActive ? "nav-link color-white active" : "nav-link color-white not-active")} to="/films">Films</NavLink>
           </li>
         </ul>
       </nav>
