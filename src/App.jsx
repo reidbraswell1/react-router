@@ -18,10 +18,10 @@ function App(props) {
       <nav className="navbar navbar-expand-sm navbar-light">
         <ul id="nav-items" className="navbar-nav">
           <li id="nav-item-home" className="nav-item">
-            <NavLink exact className={(isActive) => (isActive.isActive ? "nav-link color-white active" : "nav-link color-white not-active")} to="/">Home</NavLink>
+            <NavLink className={({isActive}) => (isActive ? "nav-link color-white active" : "nav-link color-white not-active")} to="/" end>Home</NavLink>
           </li>
           <li id="nav-item-films" className="nav-item">
-            <NavLink className={(isActive) => (isActive.isActive ? "nav-link color-white active" : "nav-link color-white not-active")} to="/films">Films</NavLink>
+            <NavLink className={({isActive}) => (isActive ? "nav-link color-white active" : "nav-link color-white not-active")} to="/films">Films</NavLink>
           </li>
         </ul>
       </nav>
