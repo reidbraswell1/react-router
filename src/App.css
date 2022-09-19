@@ -36,8 +36,7 @@ a {
 }
 
 a:hover {
-  color: white !important;
-  text-decoration: underline !important;
+  font-weight: bold;
 }
 
 .active {
